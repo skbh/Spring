@@ -6,8 +6,8 @@
 <title>Ajax call Example</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
-
 $(document).ready(function(){
+	
 	$("#buttonId").click(function(){
 		console.log("hello");
 		$.ajax({
@@ -35,6 +35,36 @@ $(document).ready(function(){
 	
 });
 
+$(document).ready(function(){
+	
+	$('#jsonId').click(function(){
+		var name1=$("#nameId").val();
+		$.ajax({
+			type:'GET',
+			url:'${pageContext.request.contextPath}/json/'+name1,
+			success:function(result){
+				console.log(result);
+				/* var data=jQuery.parseJSON(result);
+					console.log("data " + data.id);
+					console.log("data " + data.nameOfEmployee);
+					var result = "Id=" + data.id + "<br>"+  "Name=" + data.nameOfEmployee; */
+						   $.each(result, function (index, value) {
+						      console.log(index + '=' + value.nameOfEmployee);
+						   });
+				$('#display2').html(result);
+			},
+			error:function(){
+				console.log(result);
+				$('#display2').html(result);
+			}
+			
+		});
+	});
+	
+});
+
+
+
 </script>
 
 </head>
@@ -44,10 +74,12 @@ $(document).ready(function(){
 <legend>Ajax call Example</legend>
 <form action="">
 <input type="button" id="buttonId" value="click"><br>
-<input type="text" id="textId"><input type="button" id="name" value="say hello"><br>
+<input type="text" id="textId" required><input type="button" id="name" value="say hello" ><br>
+<input type="text" id="nameId"><input type="button" id="jsonId" value="GO"><br>
 </form>
 <span id="display"></span>
 <span id="display1"></span>
+<span id="display2"></span>
 </fieldset>
 
 </body>

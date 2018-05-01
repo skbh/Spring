@@ -90,7 +90,6 @@ Employee Id : <c:out value="${emp.id}" />
 </body>
 <div class="jumbotron">
 	
-	
 <%-- <c:redirect url="/admin/register"/> --%>
 <!-- Expression language EL --><br>
 <div class="row">
@@ -105,9 +104,11 @@ Employee Id : <c:out value="${emp.id}" />
 	<c:set var="val" value='${fn:join(newval, "\")}' />
 	<br> val :
 	<c:out value="${val}"></c:out>
-	<c:forEach var="array" items='${fn:split(name, " ")}'>
+	<c:forEach var="array" items='${fn:split(text, "-")}'>
 		<c:out value="${array}" />
 	</c:forEach>
+	
+	
 	<br>
 	<c:choose>
 		<c:when test='${fn:contains(name,"sample")}'>
@@ -139,7 +140,7 @@ ${ cookie.hitCounter.value >12 ? "<p>greater than 12</p>" : "<p>less than 12</p>
 <div class="text-justify col-sm-4">
 Boolean : ${56<5}
 </div>
-
 </div>
 </div>
 </html>
+
